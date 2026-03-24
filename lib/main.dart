@@ -1,122 +1,200 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: PaginaCatalogo(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PaginaCatalogo extends StatelessWidget {
+  const PaginaCatalogo({super.key});
 
-  // This widget is the root of your application.
+  // Lista de datos para las 14 opciones basadas en tus imágenes
+  final List<Map<String, dynamic>> opciones = const [
+    {
+      "titulo": "¿Qué comer hoy?",
+      "subtitulo": "No pelees más, deja que el azar elija tu cena.",
+      "estrellas": 5,
+      "color": Colors.orange,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/pizza1.jpg"
+    },
+    {
+      "titulo": "Destino de Vacaciones",
+      "subtitulo": "Playa, montaña o ciudad. ¡Gira y empaca!",
+      "estrellas": 4,
+      "color": Colors.blue,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/destino.jfif"
+    },
+    {
+      "titulo": "¿Qué película ver?",
+      "subtitulo": "Acción, terror o comedia. Ideal para parejas.",
+      "estrellas": 5,
+      "color": Colors.red,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/peli.jfif"
+    },
+    {
+      "titulo": "Rutina de Ejercicio",
+      "subtitulo": "Cardio, pesas o yoga. Define tu entrenamiento.",
+      "estrellas": 5,
+      "color": Colors.green,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/rutina.jfif"
+    },
+    {
+      "titulo": "Verdad o Reto",
+      "subtitulo": "El clásico juego de fiestas en versión digital.",
+      "estrellas": 4,
+      "color": Colors.purple,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/ret.jfif"
+    },
+    {
+      "titulo": "Tareas del Hogar",
+      "subtitulo": "¿A quién le toca lavar los platos hoy?",
+      "estrellas": 3,
+      "color": Colors.teal,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/tare.jfif"
+    },
+    {
+      "titulo": "Estilo de Outfit",
+      "subtitulo": "Casual, formal o deportivo. Decide tu look.",
+      "estrellas": 4,
+      "color": Colors.pink,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/vest.jfif"
+    },
+    {
+      "titulo": "Día de Cita Ideal",
+      "subtitulo": "Picnic, cine, museo o cena romántica.",
+      "estrellas": 5,
+      "color": Colors.redAccent,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/cita.png"
+    },
+    {
+      "titulo": "Ruleta de la Fortuna",
+      "subtitulo": "Gana puntos, descuentos o premios virtuales.",
+      "estrellas": 5,
+      "color": Colors.amber,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/fort.jfif"
+    },
+    {
+      "titulo": "Lectura del Mes",
+      "subtitulo": "Elige tu próximo libro de la lista.",
+      "estrellas": 4,
+      "color": Colors.brown,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/libro.jfif"
+    },
+    {
+      "titulo": "Bebidas y Cócteles",
+      "subtitulo": "Mezclas divertidas para tu próxima reunión.",
+      "estrellas": 3,
+      "color": Colors.cyan,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/beb.png"
+    },
+    {
+      "titulo": "Color de Uñas",
+      "subtitulo": "Deja que la ruleta elija tu próximo diseño.",
+      "estrellas": 4,
+      "color": Colors.pinkAccent,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/u%C3%B1a.jfif"
+    },
+    {
+      "titulo": "Preguntas de Examen",
+      "subtitulo": "Repasa temas al azar para estudiar mejor.",
+      "estrellas": 5,
+      "color": Colors.indigo,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/preg.jpg"
+    },
+    {
+      "titulo": "Mensaje Motacional",
+      "subtitulo": "Una frase positiva para empezar tu mañana.",
+      "estrellas": 5,
+      "color": Colors.yellow,
+      "imagen": "https://raw.githubusercontent.com/alanx12398/imagenes-para-flutter-6-J-11-febrero-2026/refs/heads/main/mens.png"
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F6F9), // Fondo gris muy claro elegante
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text("Ruleta de Decisiones", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        backgroundColor: Colors.indigo,
+        elevation: 0,
+        centerTitle: true,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: GridView.builder(
+        padding: const EdgeInsets.all(12),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // 2 columnas como en tu imagen
+          childAspectRatio: 0.75, // Ajusta el alto de la tarjeta
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
+        itemCount: opciones.length,
+        itemBuilder: (context, index) {
+          final item = opciones[index];
+          return Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Imagen con bordes redondeados arriba
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                    child: Image.network(
+                      item['imagen'],
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      // Imagen de respaldo por si el link falla
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: item['color'].withOpacity(0.1),
+                        child: Icon(Icons.image, color: item['color']),
+                      ),
+                    ),
+                  ),
+                ),
+                // Textos y Estrellas
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        item['titulo'],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        item['subtitulo'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 11, color: Colors.grey[700]),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 6),
+                      // Fila de Estrellitas
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (starIndex) {
+                          return Icon(
+                            Icons.star,
+                            size: 14,
+                            color: starIndex < item['estrellas'] ? Colors.amber : Colors.grey[300],
+                          );
+                        }),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
